@@ -36,7 +36,7 @@ print("[INFO] loading HOG + Linear SVM face detector...")
 detector = dlib.get_frontal_face_detector()
 # load the input image from disk, resize it, and convert it from
 # BGR to RGB channel ordering (which is what dlib expects)
-image = cv2.imread('C:/Users/glebr/Desktop/pict_2.jpg')
+image = cv2.imread('C:/Users/glebr/Desktop/pict_5.jpg')
 image = imutils.resize(image, width=600)
 rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 # perform face detection using dlib's face detector
