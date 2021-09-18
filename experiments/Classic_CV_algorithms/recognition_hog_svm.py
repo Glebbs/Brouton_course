@@ -24,8 +24,8 @@ for (i, ip) in enumerate(image_paths):
 svm_model = LinearSVC(random_state=42, tol=1e-5)
 svm_model.fit(images, labels)
 
-train_image_paths = list(paths.list_images('C:/Users/glebr/Desktop/test_set'))
-for (i, ip) in enumerate(image_paths):
+test_image_paths = list(paths.list_images('C:/Users/glebr/Desktop/test_set'))
+for (i, ip) in enumerate(test_image_paths):
     image = cv2.imread(ip)
     resized_image = cv2.resize(image, (128, 256))
     # get the HOG descriptor for the test image

@@ -14,7 +14,7 @@ net = cv2.dnn.readNetFromCaffe(prototxt=prototxt, caffeModel=model)
 #image_paths = list(paths.list_images('C:/Users/glebr/Desktop/test_set/'))
 
 #for (i, ip) in enumerate(image_paths):
-image = cv2.imread('C:/Users/glebr/Desktop/pict_6.jpg')
+image = cv2.imread('C:/Users/glebr/Desktop/pict_5.jpg')
 (h, w) = image.shape[:2]
 blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0))
 
