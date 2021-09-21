@@ -24,9 +24,13 @@ for (i, ip) in enumerate(image_paths):
 svm_model = LinearSVC(random_state=42, tol=1e-5)
 svm_model.fit(images, labels)
 
+correct = 0
+amount_of_photos = 0
+
 test_image_paths = list(paths.list_images('C:/Users/glebr/Desktop/test_set'))
 for (i, ip) in enumerate(test_image_paths):
     image = cv2.imread(ip)
+    amount_of_photos += 1
     resized_image = cv2.resize(image, (128, 256))
     # get the HOG descriptor for the test image
     (hog_desc, hog_image) = feature.hog(resized_image, orientations=9,
@@ -44,14 +48,24 @@ for (i, ip) in enumerate(test_image_paths):
     cv2.imshow('HOG Image', hog_image)
     # put the predicted text on the test image
     cv2.putText(image, pred.title(), (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 1.0,
-                (0, 255, 0), 2)
+                                             (0, 255, 0), 2)
     cv2.imshow('Test Image', image)
     # cv2.imwrite(f"outputs/{args['path']}_hog_{i}.jpg",
     #             hog_image * 255.)  # multiply by 255. to bring to OpenCV pixel range
     # cv2.imwrite(f"outputs/{args['path']}_pred_{i}.jpg", image)
+
+    answer = ip.split('\\')[-2]
+    # print(pred.title().lower())
+    # print(answer.lower())
+    # print(pred.title().lower() == answer.lower())
+
+    if pred.title().lower() == answer.lower():
+        correct += 1
+
     cv2.waitKey(0)
-
-
+# print(correct)
+# print(amount_of_photos)
+print(correct / amount_of_photos * 100)
 
 
 
