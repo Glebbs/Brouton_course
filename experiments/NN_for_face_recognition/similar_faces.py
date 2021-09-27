@@ -5,7 +5,7 @@ import cv2
 print("[INFO] loading encodings...")
 data = pickle.loads(open('encodes', "rb").read())
 
-image = cv2.imread('C:/Users/glebr/Desktop/test_set/A._A._Gill/0227_01.jpg')
+image = cv2.imread('C:/Users/glebr/Desktop/test_set/2/0087_01.jpg')
 rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 # detect the (x, y)-coordinates of the bounding boxes corresponding
 # to each face in the input image, then compute the facial embeddings
