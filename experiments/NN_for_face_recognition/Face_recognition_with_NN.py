@@ -1,3 +1,4 @@
+import torch as torch
 from imutils import paths
 import numpy as np
 import imutils
@@ -104,17 +105,19 @@ import pickle
 import cv2
 import os
 
-proto = "C:/Users/glebr/Desktop/MobileNetSSD_deploy.prototxt"
-model = "C:/Users/glebr/Desktop/res10_300x300_ssd_iter_140000.caffemodel"
+device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+
+proto = "C:/Users/glebr/PycharmProjects/Brouton_course/experiments/NN_for_face_recognition/assets/MobileNetSSD_deploy.prototxt"
+model = "C:/Users/glebr/PycharmProjects/Brouton_course/experiments/NN_for_face_recognition/assets/res10_300x300_ssd_iter_140000.caffemodel"
 detector = cv2.dnn.readNetFromCaffe(proto, model)
-embedder = cv2.dnn.readNetFromTorch('C:/Users/glebr/Desktop/openface.nn4.small2.v1.t7')
+embedder = cv2.dnn.readNetFromTorch('C:/Users/glebr/PycharmProjects/Brouton_course/experiments/NN_for_face_recognition/assets/openface.nn4.small2.v1.t7')
 recognizer = pickle.loads(open("recognizer", "rb").read())
 le = pickle.loads(open("le", "rb").read())
 
 correct = 0
 amount_of_photos = 0
 
-test_image_paths = list(paths.list_images('C:/Users/glebr/Desktop/test_set'))
+test_image_paths = list(paths.list_images('C:/Users/glebr/Desktop/test_set_old'))
 for (i, ip) in enumerate(test_image_paths):
     image = cv2.imread(ip)
     answer = ip.split('\\')[-2]
@@ -126,6 +129,7 @@ for (i, ip) in enumerate(test_image_paths):
                                       (104.0, 177.0, 123.0), swapRB=False, crop=False)
     # apply OpenCV's deep learning-based face detector to localize
     # faces in the input image
+    print(imageBlob)
     detector.setInput(imageBlob)
     detections = detector.forward()
 

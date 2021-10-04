@@ -7,7 +7,7 @@ from imutils import paths
 images = []
 labels = []
 
-image_paths = list(paths.list_images('C:/Users/glebr/Desktop/train_set'))
+image_paths = list(paths.list_images('C:/Users/glebr/Desktop/train_set_old'))
 
 for (i, ip) in enumerate(image_paths):
     image = cv2.imread(ip)
@@ -27,7 +27,7 @@ svm_model.fit(images, labels)
 correct = 0
 amount_of_photos = 0
 
-test_image_paths = list(paths.list_images('C:/Users/glebr/Desktop/test_set'))
+test_image_paths = list(paths.list_images('C:/Users/glebr/Desktop/test_set_old'))
 for (i, ip) in enumerate(test_image_paths):
     image = cv2.imread(ip)
     amount_of_photos += 1
